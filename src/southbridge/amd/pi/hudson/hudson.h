@@ -121,6 +121,11 @@
 
 #define LPC_WIDEIO2_GENERIC_PORT	0x90
 
+#define LPC_CLK_CNTRL				0xD0
+#define   LPC_CLK0_EN				BIT(13)
+#define   LPC_CLK1_EN				BIT(14)
+#define   LPC_CLKRUN_EN				BIT(31)
+
 #define SPI_CNTRL0 			0x00
 #define   SPI_READ_MODE_MASK		(BIT(30) | BIT(29) | BIT(18))
 /* Nominal is 16.7MHz on older devices, 33MHz on newer */
@@ -181,6 +186,7 @@ u16 pm_read16(u16 reg);
 #ifdef __PRE_RAM__
 void hudson_lpc_port80(void);
 void hudson_lpc_decode(void);
+void hudson_lpc_set_lpcclk(int index, int value);
 void hudson_pci_port80(void);
 void hudson_clk_output_48Mhz(void);
 void hudson_read_mode(u32 mode);

@@ -141,6 +141,35 @@ void hudson_lpc_decode(void)
 	pci_write_config32(dev, LPC_IO_PORT_DECODE_ENABLE, tmp);
 }
 
+void hudson_lpc_set_lpcclk(int index, int value) {
+	pci_devfn_t dev;
+	u32 tmp = 0;
+	u32 offset = 0;
+
+	/* Enable I/O decode to LPC bus */
+	dev = PCI_DEV(0, PCU_DEV, LPC_FUNC);
+	tmp = pci_read_config32(dev, LPC_CLK_CNTRL);
+
+	printk(BIOS_ALERT, "clkcntrl: %x\n", tmp);
+	if (0 == index) {
+		offset = LPC_CLK0_EN;
+	} else if (1 == index) {
+		offset = LPC_CLK1_EN;
+	} else {
+		return;
+	}
+
+	if (value) {
+		tmp |= offset;
+	} else {
+		tmp &= ~offset;
+	}
+	printk(BIOS_ALERT, "clkcntrl: %x\n", tmp);
+	pci_write_config32(dev, LPC_CLK_CNTRL, tmp);
+	printk(BIOS_ALERT, "clkcntrl: written\n");
+
+}
+
 static void enable_wideio(uint8_t port, uint16_t size)
 {
 	uint32_t wideio_enable[] = {
