@@ -82,6 +82,11 @@ void cache_as_ram_main(unsigned long bist, unsigned long cpu_init_detectedx)
 		printk(BIOS_ALERT, "BIOS version %s\n", COREBOOT_ORIGIN_GIT_TAG);
 
 		//
+		// disable LPCCLK0
+		//
+		hudson_lpc_set_lpcclk(1, 0);
+
+		//
 		// Configure clock request
 		//
 		data = *((u32 *)(ACPI_MMIO_BASE + MISC_BASE+FCH_MISC_REG00));
