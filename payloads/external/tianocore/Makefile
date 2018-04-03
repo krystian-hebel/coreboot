@@ -16,13 +16,13 @@
 # force the shell to bash - the edksetup.sh script doesn't work with dash
 export SHELL := env bash
 
-STABLE_COMMIT_ID=315d9d08fd77db1024ccc5307823da8aaed85e2f
+STABLE_COMMIT_ID=ae5b8e6c80d38a85d39b8f20da005b1eb7eb4c78
 TAG-$(CONFIG_TIANOCORE_MASTER)=origin/master
 TAG-$(CONFIG_TIANOCORE_STABLE)=$(STABLE_COMMIT_ID)
 
 project_name=Tianocore
 project_dir=$(CURDIR)/tianocore
-project_git_repo=https://github.com/tianocore/edk2
+project_git_repo=https://github.com/3mdeb/edk2
 
 export EDK_TOOLS_PATH=$(project_dir)/BaseTools
 
