@@ -16,7 +16,7 @@
 # force the shell to bash - the edksetup.sh script doesn't work with dash
 export SHELL := env bash
 
-STABLE_COMMIT_ID=ae5b8e6c80d38a85d39b8f20da005b1eb7eb4c78
+STABLE_COMMIT_ID=3e72ffe8afdd03f1f89eba65c921cbdcb004cfee
 TAG-$(CONFIG_TIANOCORE_MASTER)=origin/master
 TAG-$(CONFIG_TIANOCORE_STABLE)=$(STABLE_COMMIT_ID)
 
