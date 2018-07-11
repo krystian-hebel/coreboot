@@ -53,6 +53,7 @@ checkout: fetch
 		git checkout -b coreboot $(TAG-y)
 
 config: checkout
+	patch -p1 <console.patch
 ifeq ($(CONSOLE_SERIAL),yy)
 	cp "$(project_dir)/src/config/console.h" "$(project_dir)/src/config/console.h.cb"
 	cp "$(project_dir)/src/config/serial.h" "$(project_dir)/src/config/serial.h.cb"
@@ -90,6 +91,7 @@ ifeq ($(CONSOLE_SERIAL),yy)
 	cp "$(project_dir)/src/config/console.h.cb" "$(project_dir)/src/config/console.h"
 	cp "$(project_dir)/src/config/serial.h.cb" "$(project_dir)/src/config/serial.h"
 endif
+	patch -p1 <console.patch -R
 
 clean:
 	test -d $(project_dir) && $(MAKE) -C $(project_dir)/src veryclean || exit 0

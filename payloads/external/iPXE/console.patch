@@ -1,0 +1,14 @@
+--- old/ipxe/src/core/console.c	2018-07-10 14:55:51.476038000 +0200
++++ new/ipxe/src/core/console.c	2018-07-10 14:36:34.832003000 +0200
+@@ -110,6 +110,11 @@
+ 	if ( character == '\r' )
+ 		character = '\n';
+ 
++	/* DEL -> BS translation */
++	if (0x7f == character) {
++		character = 0x08;
++	}
++
+ 	return character;
+ }
+ 
